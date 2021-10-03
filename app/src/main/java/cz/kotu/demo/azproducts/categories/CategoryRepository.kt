@@ -1,8 +1,10 @@
 package cz.kotu.demo.azproducts.categories
 
-object CategoryRepository {
+import javax.inject.Inject
+
+class CategoryRepository @Inject constructor() {
     fun getCategories() = listOf<Category>(
-        Category("Vidlíčky"),
+        Category("Vidličky"),
         Category("Nože"),
         Category("Lžičky"),
     )

@@ -10,12 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CategoriesListContent() {
+fun CategoriesListContent(categoryRepository: CategoryRepository) {
     LazyColumn(
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
     ) {
         items(
-            items = CategoryRepository.getCategories(),
+            items = categoryRepository.getCategories(),
             itemContent = {
                 CategoryListItem(it)
             }
