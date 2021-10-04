@@ -1,25 +1,32 @@
 package cz.kotu.demo.azproducts.webservice
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.greaterThan
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Inject
 
 @RunWith(AndroidJUnit4::class)
+@HiltAndroidTest
 class AzRetrofitServiceTest {
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
+
+    @Inject lateinit var service: AzRetrofitService
+
+    @Before
+    fun init() {
+        hiltRule.inject()
+    }
+
     @Test
     fun getCategories() = runBlocking {
-        val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("https://www.alza.cz/Services/RestService.svc/")
-            .addConverterFactory(MoshiConverterFactory.create())
-            .build()
-
-        val service: AzRetrofitService = retrofit.create(AzRetrofitService::class.java)
-
         val categories = service.getFloors().data
 
         assertThat(categories.size, greaterThan(1))
