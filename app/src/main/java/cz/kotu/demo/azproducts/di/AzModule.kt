@@ -1,5 +1,7 @@
 package cz.kotu.demo.azproducts.di
 
+import cz.kotu.demo.azproducts.categories.CategoryRepository
+import cz.kotu.demo.azproducts.categories.CategoryRepositoryImpl
 import cz.kotu.demo.azproducts.webservice.AzRetrofitService
 import dagger.Module
 import dagger.Provides
@@ -22,5 +24,10 @@ class AzModule {
     fun provideAzRetrofitService(
         retrofit: Retrofit
     ): AzRetrofitService = retrofit.create(AzRetrofitService::class.java)
+
+    @Provides
+    fun provideCategoryRepository(
+        impl: CategoryRepositoryImpl
+    ): CategoryRepository = impl
 
 }

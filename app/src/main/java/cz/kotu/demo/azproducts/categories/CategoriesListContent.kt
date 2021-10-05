@@ -24,7 +24,7 @@ fun CategoriesListContent(categoriesViewModel: CategoriesViewModel) {
             items = categories,
             itemContent = { category ->
                 CategoryListItem(category) {
-                    categoriesViewModel.duplicateCategory(category)
+                    TODO("open category")
                 }
             }
         )

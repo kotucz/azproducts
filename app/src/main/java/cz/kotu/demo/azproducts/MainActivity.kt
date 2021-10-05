@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import cz.kotu.demo.azproducts.categories.CategoriesListContent
 import cz.kotu.demo.azproducts.categories.CategoriesViewModel
-import cz.kotu.demo.azproducts.categories.CategoryRepository
+import cz.kotu.demo.azproducts.categories.MockCategoryRepository
 import cz.kotu.demo.azproducts.ui.theme.AZProductsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,6 +35,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     AZProductsTheme {
-        CategoriesListContent(CategoriesViewModel(CategoryRepository()))
+        CategoriesListContent(CategoriesViewModel(MockCategoryRepository()))
     }
 }

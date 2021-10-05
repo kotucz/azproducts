@@ -1,11 +1,7 @@
 package cz.kotu.demo.azproducts.categories
 
-import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 
-class CategoryRepository @Inject constructor() {
-    fun getCategories() = listOf<Category>(
-        Category("Vidličky"),
-        Category("Nože"),
-        Category("Lžičky"),
-    )
+interface CategoryRepository {
+    val categoriesFlow: Flow<List<Category>>
 }
