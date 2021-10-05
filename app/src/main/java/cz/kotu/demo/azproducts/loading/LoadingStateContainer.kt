@@ -8,16 +8,15 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import cz.kotu.demo.azproducts.categories.CategoriesState
 import cz.kotu.demo.azproducts.ui.theme.ErrorRed
 
 @Composable
-inline fun LoadingStateContainer(
-    categoriesState: CategoriesState,
-    dataView: (CategoriesState.Data) -> Unit
+inline fun <T> LoadingStateContainer(
+    loadingState: LoadingState<T>,
+    dataView: (T) -> Unit
 ) {
-    when (val state = categoriesState) {
-        is CategoriesState.Loading -> {
+    when (loadingState) {
+        is LoadingState.Loading -> {
             Column(
                 Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -26,10 +25,10 @@ inline fun LoadingStateContainer(
                 CircularProgressIndicator()
             }
         }
-        is CategoriesState.Data -> {
-            dataView(state)
+        is LoadingState.Data -> {
+            dataView(loadingState.data)
         }
-        is CategoriesState.Error -> {
+        is LoadingState.Error -> {
             Column(
                 Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -37,7 +36,7 @@ inline fun LoadingStateContainer(
             ) {
                 Text(
                     color = ErrorRed,
-                    text = state.exception.toString()
+                    text = loadingState.exception.toString()
                 )
             }
         }

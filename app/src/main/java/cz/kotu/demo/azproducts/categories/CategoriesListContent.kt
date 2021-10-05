@@ -12,20 +12,21 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import cz.kotu.demo.azproducts.loading.LoadingState
 import cz.kotu.demo.azproducts.loading.LoadingStateContainer
 
 @Composable
 fun CategoriesListContent(categoriesViewModel: CategoriesViewModel) {
-    val categoriesState: CategoriesState by categoriesViewModel.categories.collectAsState(
-        CategoriesState.Loading()
+    val categoriesState: LoadingState<List<Category>> by categoriesViewModel.categories.collectAsState(
+        LoadingState.Loading()
     )
 
-    LoadingStateContainer(categoriesState) { data ->
+    LoadingStateContainer(categoriesState) { categories: List<Category> ->
         LazyColumn(
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
         ) {
             items(
-                items = data.categories,
+                items = categories,
                 itemContent = { category ->
                     CategoryListItem(category) {
                         TODO("open category")
