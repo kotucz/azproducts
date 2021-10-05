@@ -5,11 +5,11 @@ import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 class MockCategoryRepository @Inject constructor() : CategoryRepository {
-    override val categoriesFlow: Flow<List<Category>> = flowOf(
-        listOf<Category>(
+    override val categoriesFlow: Flow<CategoriesState> = flowOf(
+        CategoriesState.Data(listOf<Category>(
             Category("Vidličky"),
             Category("Nože"),
             Category("Lžičky"),
-        )
+        ))
     )
 }

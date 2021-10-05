@@ -9,5 +9,5 @@ import javax.inject.Inject
 class CategoriesViewModel @Inject constructor(
     private val categoryRepository: CategoryRepository
 ) : ViewModel() {
-    val categories: Flow<List<Category>> = categoryRepository.categoriesFlow
+    val categories: Flow<CategoriesState> = categoryRepository.categoriesFlow
 }
