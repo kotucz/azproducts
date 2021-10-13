@@ -31,4 +31,22 @@ class AzRetrofitServiceTest {
 
         assertThat(categories.size, greaterThan(1))
     }
+
+    @Test
+    fun getProducts() = runBlocking {
+        val category = AzRetrofitService.Category(
+            id = 18851104,
+            name = "Hračky, pro děti a miminka",
+        )
+
+        val products = service.getProducts(
+            AzRetrofitService.ProductsFilter(
+                AzRetrofitService.FilterParameters(
+                    id = category.id
+                )
+            )
+        ).data
+
+        assertThat(products.size, greaterThan(1))
+    }
 }
