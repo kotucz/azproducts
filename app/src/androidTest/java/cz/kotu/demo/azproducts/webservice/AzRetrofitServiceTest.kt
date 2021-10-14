@@ -6,6 +6,7 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.greaterThan
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -48,5 +49,13 @@ class AzRetrofitServiceTest {
         ).data
 
         assertThat(products.size, greaterThan(1))
+    }
+
+    @Test
+    fun getProductDetail() = runBlocking {
+        val productId: Long = 5632104
+        val productDetail = service.getProductDetail(productId).data
+
+        assertEquals(productId, productDetail.id)
     }
 }

@@ -3,6 +3,7 @@ package cz.kotu.demo.azproducts.webservice
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface AzRetrofitService {
     @GET("v1/floors")
@@ -32,5 +33,19 @@ interface AzRetrofitService {
     data class Product(
         val id: Long,
         val name: String
+    )
+
+    @GET("v13/product/{id}")
+    suspend fun getProductDetail(
+        @Path("id") productId: Long
+    ): ProductDetailResponse
+
+    data class ProductDetailResponse(val data: ProductDetail)
+
+    data class ProductDetail(
+        val id: Long,
+        val img: String,
+        val name: String,
+        val spec: String,
     )
 }
