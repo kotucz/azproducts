@@ -11,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import cz.kotu.demo.azproducts.categories.CategoriesListContent
 import cz.kotu.demo.azproducts.categories.CategoriesViewModel
 import cz.kotu.demo.azproducts.categories.MockCategoryRepository
+import cz.kotu.demo.azproducts.products.ProductsActivity
 import cz.kotu.demo.azproducts.ui.theme.AZProductsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +25,11 @@ class MainActivity : ComponentActivity() {
             AZProductsTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    CategoriesListContent(categoriesViewModel)
+                    CategoriesListContent(categoriesViewModel,
+                        onCategoryClick = {
+                            startActivity(ProductsActivity.newIntent(this, it.id))
+                        }
+                    )
                 }
             }
         }
@@ -35,6 +40,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     AZProductsTheme {
-        CategoriesListContent(CategoriesViewModel(MockCategoryRepository()))
+        CategoriesListContent(CategoriesViewModel(MockCategoryRepository()), onCategoryClick = {})
     }
 }

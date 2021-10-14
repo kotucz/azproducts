@@ -1,4 +1,4 @@
-package cz.kotu.demo.azproducts.categories
+package cz.kotu.demo.azproducts.products
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -16,22 +16,21 @@ import cz.kotu.demo.azproducts.loading.LoadingState
 import cz.kotu.demo.azproducts.loading.LoadingStateContainer
 
 @Composable
-fun CategoriesListContent(
-    categoriesViewModel: CategoriesViewModel,
-    onCategoryClick: (Category) -> Unit,
-) {
-    val categoriesState: LoadingState<List<Category>> by categoriesViewModel.categories.collectAsState(
+fun ProductsListContent(viewModel: ProductsViewModel) {
+    val productsState: LoadingState<List<Product>> by viewModel.products.collectAsState(
         LoadingState.Loading()
     )
 
-    LoadingStateContainer(categoriesState) { categories: List<Category> ->
+    LoadingStateContainer(productsState) { products: List<Product> ->
         LazyColumn(
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
         ) {
             items(
-                items = categories,
-                itemContent = { category ->
-                    CategoryListItem(category, onClick = { onCategoryClick(category) })
+                items = products,
+                itemContent = { product ->
+                    ProductListItem(product) {
+                        // TODO open product detail
+                    }
                 }
             )
         }
@@ -39,12 +38,12 @@ fun CategoriesListContent(
 }
 
 @Composable
-fun CategoryListItem(
-    category: Category, onClick: () -> Unit
+fun ProductListItem(
+    product: Product, onClick: () -> Unit
 ) {
     Column {
         Text(
-            text = category.title, style = typography.h6,
+            text = product.name, style = typography.h6,
             modifier = Modifier.clickable(onClick = onClick)
         )
     }

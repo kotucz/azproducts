@@ -21,6 +21,9 @@ class CategoryRepositoryImpl @Inject constructor(
     }
 
     private suspend fun getCategories() = azService.getFloors().data.map {
-        Category(title = it.name)
+        Category(
+            id = it.id,
+            title = it.name
+        )
     }
 }
