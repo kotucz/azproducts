@@ -2,6 +2,8 @@ package cz.kotu.demo.azproducts.di
 
 import cz.kotu.demo.azproducts.categories.CategoryRepository
 import cz.kotu.demo.azproducts.categories.CategoryRepositoryImpl
+import cz.kotu.demo.azproducts.products.ProductsRepository
+import cz.kotu.demo.azproducts.products.ProductsRepositoryImpl
 import cz.kotu.demo.azproducts.webservice.AzRetrofitService
 import dagger.Module
 import dagger.Provides
@@ -29,5 +31,10 @@ class AzModule {
     fun provideCategoryRepository(
         impl: CategoryRepositoryImpl
     ): CategoryRepository = impl
+
+    @Provides
+    fun provideProductRepository(
+        impl: ProductsRepositoryImpl
+    ): ProductsRepository = impl
 
 }

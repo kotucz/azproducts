@@ -10,21 +10,13 @@ import dagger.assisted.AssistedInject
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 
 class ProductsViewModel @AssistedInject constructor(
     @Assisted categoryId: Long,
+    productsRepository: ProductsRepository,
 ) : ViewModel() {
 
-    val products: Flow<LoadingState<List<Product>>> = flowOf(
-        LoadingState.Data(
-            listOf(
-                Product(1, "Category $categoryId"),
-                Product(2, "Bagr"),
-                Product(3, "Ještěrka"),
-            )
-        )
-    )
+    val products: Flow<LoadingState<List<Product>>> = productsRepository.productsFlow(categoryId)
 
     @AssistedFactory
     interface Factory {
