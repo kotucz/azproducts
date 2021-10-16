@@ -19,9 +19,9 @@ class ProductsViewModel @AssistedInject constructor(
     val products: Flow<LoadingState<List<Product>>> = flowOf(
         LoadingState.Data(
             listOf(
-                Product("Category $categoryId"),
-                Product("Bagr"),
-                Product("Ještěrka"),
+                Product(1, "Category $categoryId"),
+                Product(2, "Bagr"),
+                Product(3, "Ještěrka"),
             )
         )
     )

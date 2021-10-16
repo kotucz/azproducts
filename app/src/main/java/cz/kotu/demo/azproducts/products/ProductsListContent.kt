@@ -16,7 +16,7 @@ import cz.kotu.demo.azproducts.loading.LoadingState
 import cz.kotu.demo.azproducts.loading.LoadingStateContainer
 
 @Composable
-fun ProductsListContent(viewModel: ProductsViewModel) {
+fun ProductsListContent(viewModel: ProductsViewModel, onProductClick: (Product) -> Unit) {
     val productsState: LoadingState<List<Product>> by viewModel.products.collectAsState(
         LoadingState.Loading()
     )
@@ -28,9 +28,7 @@ fun ProductsListContent(viewModel: ProductsViewModel) {
             items(
                 items = products,
                 itemContent = { product ->
-                    ProductListItem(product) {
-                        // TODO open product detail
-                    }
+                    ProductListItem(product) { onProductClick(product) }
                 }
             )
         }

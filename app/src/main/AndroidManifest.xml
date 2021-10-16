@@ -13,6 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AZProducts">
         <activity
+            android:name=".productdetail.ProductDetailActivity"
+            android:exported="false"
+            android:label="@string/title_activity_product_detail"
+            android:theme="@style/Theme.AZProducts.NoActionBar" />
+        <activity
             android:name=".products.ProductsActivity"
             android:exported="true"
             android:label="@string/title_activity_products"
