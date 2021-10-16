@@ -2,13 +2,18 @@ package cz.kotu.demo.azproducts.productdetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import cz.kotu.demo.azproducts.loading.LoadingState
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.flow.Flow
 
 class ProductDetailViewModel @AssistedInject constructor(
     @Assisted val productId: Long,
+    productDetailRepository: ProductDetailRepository,
 ) : ViewModel() {
+
+    val product: Flow<LoadingState<ProductDetail>> = productDetailRepository.productFlow(productId)
 
     @AssistedFactory
     interface Factory {
