@@ -1,5 +1,6 @@
 package cz.kotu.demo.azproducts.productdetail
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -9,8 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
 import cz.kotu.demo.azproducts.loading.LoadingState
 import cz.kotu.demo.azproducts.loading.LoadingStateContainer
 import cz.kotu.demo.azproducts.ui.theme.AZProductsTheme
@@ -33,6 +36,12 @@ fun ProductDetailContent(product: ProductDetail) {
             .fillMaxSize()
             .padding(16.dp),
     ) {
+        Image(
+            painter = rememberImagePainter(product.imageUrl),
+            contentDescription = null,
+            contentScale = ContentScale.FillWidth,
+        )
+
         Text(
             text = product.name,
             style = MaterialTheme.typography.h5,
