@@ -3,6 +3,7 @@ package cz.kotu.demo.azproducts.productdetail
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -39,6 +40,7 @@ fun ProductDetailContent(product: ProductDetail) {
         Image(
             painter = rememberImagePainter(product.imageUrl),
             contentDescription = null,
+            modifier = Modifier.fillMaxWidth(),
             contentScale = ContentScale.FillWidth,
         )
 
