@@ -25,4 +25,7 @@ class DatabaseModule {
 
     @Provides
     fun cacheRecordDao(db: AzDatabase) = db.cacheRecordDao()
+
+    @Provides
+    fun productDao(db: AzDatabase) = db.productDao()
 }
