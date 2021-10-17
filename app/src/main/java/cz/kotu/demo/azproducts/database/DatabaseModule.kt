@@ -28,4 +28,7 @@ class DatabaseModule {
 
     @Provides
     fun productDao(db: AzDatabase) = db.productDao()
+
+    @Provides
+    fun productDetailDao(db: AzDatabase) = db.productDetailDao()
 }
