@@ -2,9 +2,10 @@ package cz.kotu.demo.azproducts.database
 
 import androidx.room.*
 
-@Entity
+@Entity(
+    primaryKeys = ["id", "categoryId"]
+)
 data class Product(
-    @PrimaryKey
     @ColumnInfo(name = "id") val id: Long,
     @ColumnInfo(name = "categoryId") val categoryId: Long,
     @ColumnInfo(name = "name") val name: String,
