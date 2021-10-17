@@ -22,4 +22,7 @@ class DatabaseModule {
 
     @Provides
     fun categoryDao(db: AzDatabase) = db.categoryDao()
+
+    @Provides
+    fun cacheRecordDao(db: AzDatabase) = db.cacheRecordDao()
 }

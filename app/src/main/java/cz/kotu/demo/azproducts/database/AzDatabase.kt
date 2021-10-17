@@ -5,9 +5,11 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [
+        CacheRecord::class,
         Category::class,
     ], version = 1
 )
 abstract class AzDatabase : RoomDatabase() {
+    abstract fun cacheRecordDao(): CacheRecordDao
     abstract fun categoryDao(): CategoryDao
 }
